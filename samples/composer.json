@@ -1,0 +1,5 @@
+{
+    "require": {
+        "num8er/tranzware-payment-gateway": "^1.0"
+    }
+}
