@@ -2,6 +2,10 @@
 
 namespace num8er\TranzWarePaymentGateway\Requests;
 
+/**
+ * Class TranzWarePaymentGatewayOrderRequestResult
+ * @package num8er\TranzWarePaymentGateway\Requests
+ */
 class TranzWarePaymentGatewayOrderRequestResult implements TranzWarePaymentGatewayRequestResultInterface
 {
     private $httpStatus;

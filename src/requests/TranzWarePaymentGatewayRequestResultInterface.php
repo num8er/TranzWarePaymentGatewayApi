@@ -2,6 +2,10 @@
 
 namespace num8er\TranzWarePaymentGateway\Requests;
 
+/**
+ * Interface TranzWarePaymentGatewayRequestResultInterface
+ * @package num8er\TranzWarePaymentGateway\Requests
+ */
 interface TranzWarePaymentGatewayRequestResultInterface
 {
     /**

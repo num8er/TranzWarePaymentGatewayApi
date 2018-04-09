@@ -2,6 +2,10 @@
 
 namespace num8er\TranzWarePaymentGateway\Requests;
 
+/**
+ * Interface TranzWarePaymentGatewayHTTPClientResultInterface
+ * @package num8er\TranzWarePaymentGateway\Requests
+ */
 interface TranzWarePaymentGatewayHTTPClientResultInterface
 {
     public function __construct($output, $info);

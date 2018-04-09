@@ -2,6 +2,10 @@
 
 namespace num8er\TranzWarePaymentGateway\Requests;
 
+/**
+ * Interface TranzWarePaymentGatewayRequestInterface
+ * @package num8er\TranzWarePaymentGateway\Requests
+ */
 interface TranzWarePaymentGatewayRequestInterface
 {
     /**
@@ -19,7 +23,7 @@ interface TranzWarePaymentGatewayRequestInterface
      * @param string $key
      * @param string $keyPass
      *
-     * @return mixed
+     * @return void
      */
     public function setSslCertificate($cert, $key, $keyPass = '');
 }

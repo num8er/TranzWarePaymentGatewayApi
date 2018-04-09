@@ -1,6 +1,10 @@
 <?php
 namespace num8er\TranzWarePaymentGateway\Requests;
 
+/**
+ * Class TranzWarePaymentGatewayHTTPClientResult
+ * @package num8er\TranzWarePaymentGateway\Requests
+ */
 class TranzWarePaymentGatewayHTTPClientResult implements TranzWarePaymentGatewayHTTPClientResultInterface
 {
     private $info;

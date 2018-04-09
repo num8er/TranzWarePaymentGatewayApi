@@ -2,6 +2,10 @@
 
 namespace num8er\TranzWarePaymentGateway\Requests;
 
+/**
+ * Class TranzWarePaymentGatewayOrderRequest
+ * @package num8er\TranzWarePaymentGateway\Requests
+ */
 class TranzWarePaymentGatewayOrderRequest implements TranzWarePaymentGatewayRequestInterface
 {
     private $requestAttributes = [];

@@ -2,6 +2,17 @@
 
 namespace num8er\TranzWarePaymentGateway;
 
+/***
+ * Class for storing urls required by TWPG
+ *
+ * Example:
+ *  $gatewayUrls = new TranzWarePaymentGatewayUrls();
+ *  $gatewayUrls->setGatewayUrl('https://twpg/url/here');
+ *  print $gatewayUrls->getGatewayUrl(); // --> https://twpg/url/here
+ *
+ * Class TranzWarePaymentGatewayUrls
+ * @package num8er\TranzWarePaymentGateway
+ */
 class TranzWarePaymentGatewayUrls implements TranzWarePaymentGatewayUrlProviderInterface
 {
     /**

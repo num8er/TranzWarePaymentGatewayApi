@@ -5,6 +5,28 @@ namespace num8er\TranzWarePaymentGateway;
 use num8er\TranzWarePaymentGateway\Requests\TranzWarePaymentGatewayOrderRequest;
 use num8er\TranzWarePaymentGateway\Requests\TranzWarePaymentGatewayOrderStatusRequest;
 
+/**
+ * Factory class for creation of request objects
+ *
+ * Example:
+ *  $requestFactory = new TranzWarePaymentGatewayRequestFactory(
+ *   'https://tranz-ware-payment-gateway/url',
+ *   'E1000010',
+ *   'https://your-site-address-here/samples/order_approved.php',
+ *   'https://your-site-address-here/samples/order_declined.php',
+ *   'https://your-site-address-here/samples/order_canceled.php',
+ *   'EN'
+ *  );
+ *  $keyFile = __DIR__.'/../certificates/your-private-key.pem';
+ *  $keyPass = file_get_contents(__DIR__.'/../certificates/your-private-key-pass.txt');
+ *  $certFile = __DIR__.'/../certificates/cert-signed-by-payment-gateway-part.crt';
+ *  $requestFactory->setCertificate($certFile, $keyFile, $keyPass);
+ *
+ *  $orderRequest = $requestFactory->createOrderRequest(1, 'USD', 'TEST PAYMENT #1'); // --> instance of TranzWarePaymentGatewayRequestInterface
+ *
+ * Class TranzWarePaymentGatewayRequestFactory
+ * @package num8er\TranzWarePaymentGateway
+ */
 class TranzWarePaymentGatewayRequestFactory implements TranzWarePaymentGatewayRequestFactoryInterface
 {
     /**
@@ -32,6 +54,11 @@ class TranzWarePaymentGatewayRequestFactory implements TranzWarePaymentGatewayRe
 
     private $sslCertificate, $sslKey, $sslKeyPass;
 
+    /**
+     * @param string $certFile  Path to certificate
+     * @param string $keyFile   Path to private key
+     * @param string $keyPass   Password provided in creation of private key
+     */
     final public function setCertificate($certFile, $keyFile, $keyPass = '')
     {
         $this->sslKey = $keyFile;
@@ -41,6 +68,7 @@ class TranzWarePaymentGatewayRequestFactory implements TranzWarePaymentGatewayRe
 
     protected $MERCHANT_ID;
     protected $LANG;
+
     /**
      * @var TranzWarePaymentGatewayUrlProviderInterface
      *

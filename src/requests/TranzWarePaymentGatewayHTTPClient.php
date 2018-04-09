@@ -1,12 +1,23 @@
 <?php
 namespace num8er\TranzWarePaymentGateway\Requests;
 
+/**
+ * Class TranzWarePaymentGatewayHTTPClient
+ * @package num8er\TranzWarePaymentGateway\Requests
+ */
 class TranzWarePaymentGatewayHTTPClient implements TranzWarePaymentGatewayHTTPClientInterface
 {
     protected $url;
     protected $body;
     protected $sslCertificate;
 
+    /**
+     * TranzWarePaymentGatewayHTTPClient constructor.
+     *
+     * @param string $url              Destination request url
+     * @param string $body             Body that will be delivered to destination
+     * @param array  $sslCertificate   Array of 'key', 'keyPass', 'cert'  values
+     */
     public function __construct
     (
         $url,
@@ -19,6 +30,11 @@ class TranzWarePaymentGatewayHTTPClient implements TranzWarePaymentGatewayHTTPCl
         $this->sslCertificate = $sslCertificate;
     }
 
+    /**
+     * Executes request and returns instance of result object
+     *
+     * @return TranzWarePaymentGatewayHTTPClientResult
+     */
     final public function execute()
     {
         $ch = curl_init();
