@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TKKPG>
+    <Request>
+        <Operation>GetOrderStatus</Operation>
+        <Language>{{lang}}</Language>
+        <Order>
+            <Merchant>{{merchantId}}</Merchant>
+            <OrderID>{{orderId}}</OrderID>
+        </Order>
+        <SessionID>{{sessionId}}</SessionID>
+    </Request>
+</TKKPG>
