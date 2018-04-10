@@ -9,6 +9,7 @@ namespace num8er\TranzWarePaymentGateway\Requests;
 class TranzWarePaymentGatewayOrderStatusRequest implements TranzWarePaymentGatewayRequestInterface
 {
     private $requestAttributes = [];
+    private $debugToFile = null;
 
     /**
      * TranzWarePaymentGatewayOrderStatusRequest constructor.
@@ -19,10 +20,11 @@ class TranzWarePaymentGatewayOrderStatusRequest implements TranzWarePaymentGatew
      * @param string $sessionId
      * @param string $lang
      */
-    public function __construct($requestUrl, $merchantId, $orderId, $sessionId, $lang = 'EN')
+    public function __construct($requestUrl, $merchantId, $orderId, $sessionId, $lang = 'EN', $debugToFile)
     {
         $this->requestAttributes =
             compact('merchantId', 'requestUrl', 'orderId', 'sessionId', 'lang');
+        $this->debugToFile = $debugToFile;
     }
 
     public function execute()
@@ -34,6 +36,9 @@ class TranzWarePaymentGatewayOrderStatusRequest implements TranzWarePaymentGatew
         ];
         $httpClient =
             new TranzWarePaymentGatewayHTTPClient($this->requestAttributes['requestUrl'], $this->getRequestBody(), $ssl);
+        if ($this->debugToFile) {
+            $httpClient->setDebugToFile($this->debugToFile);
+        }
         return new TranzWarePaymentGatewayOrderStatusRequestResult($httpClient->execute());
     }
 

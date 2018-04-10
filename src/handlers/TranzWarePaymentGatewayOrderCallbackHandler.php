@@ -19,7 +19,7 @@ class TranzWarePaymentGatewayOrderCallbackHandler implements TranzWarePaymentGat
      *
      * @return array
      */
-    final public static function handle()
+    final public function handle()
     {
         $data = json_decode(
             json_encode(

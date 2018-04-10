@@ -15,16 +15,17 @@ $requestFactory = new TranzWarePaymentGatewayRequestFactory(
     'https://your-site-address-here/samples/order_canceled.php',
     'EN'
 );
-$keyFile = __DIR__.'/../certificates/your-private-key.pem';
-$keyPass = file_get_contents(__DIR__.'/../certificates/your-private-key-pass.txt');
-$certFile = __DIR__.'/../certificates/cert-signed-by-payment-gateway-part.crt';
+$keyFile = __DIR__.'/certificates/your-private-key.pem';
+$keyPass = file_get_contents(__DIR__.'/certificates/your-private-key-pass.txt');
+$certFile = __DIR__.'/certificates/cert-signed-by-payment-gateway-part.crt';
 $requestFactory->setCertificate($certFile, $keyFile, $keyPass);
+$requestFactory->setDebugFile(__DIR__.'/debug.log');
 
-$orderRequest = $requestFactory->createOrderRequest(1, 'AZN', 'TEST PAYMENT #1');
+$orderRequest = $requestFactory->createOrderRequest(1, 'USD', 'TEST PAYMENT $0.01');
 $orderRequestResult = $orderRequest->execute();
 if ($orderRequestResult->success()) {
     $orderData = $orderRequestResult->getData();
-    header('Location: '.$orderData['PaymentUrl']);
+    echo '<a href="'.$orderData['PaymentUrl'].'">LINK TO PAYMENT</a>';
     exit(0);
 }
 

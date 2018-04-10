@@ -93,6 +93,17 @@ class TranzWarePaymentGatewayRequestFactory implements TranzWarePaymentGatewayRe
         return $this->urlProvider;
     }
 
+    protected $debug = false, $debugFile;
+    /**
+     * @param string $path_to_file
+     */
+    final public function setDebugFile($path_to_file)
+    {
+        $this->debug = true;
+        $this->debugFile = $path_to_file;
+    }
+
+
     /**
      * @param float  $amount
      * @param string $currency
@@ -111,7 +122,8 @@ class TranzWarePaymentGatewayRequestFactory implements TranzWarePaymentGatewayRe
             $amount,
             $currency,
             $description,
-            $this->LANG
+            $this->LANG,
+            $this->debug ? $this->debugFile : null
         );
         $request->setSslCertificate($this->sslCertificate, $this->sslKey, $this->sslKeyPass);
         return $request;
@@ -130,7 +142,8 @@ class TranzWarePaymentGatewayRequestFactory implements TranzWarePaymentGatewayRe
             $this->MERCHANT_ID,
             $orderId,
             $sessionId,
-            $this->LANG
+            $this->LANG,
+            $this->debug ? $this->debugFile : null
         );
         $request->setSslCertificate($this->sslCertificate, $this->sslKey, $this->sslKeyPass);
         return $request;

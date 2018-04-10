@@ -10,6 +10,8 @@ class TranzWarePaymentGatewayHTTPClient implements TranzWarePaymentGatewayHTTPCl
     protected $url;
     protected $body;
     protected $sslCertificate;
+    protected $debug = false;
+    protected $debugToFile;
 
     /**
      * TranzWarePaymentGatewayHTTPClient constructor.
@@ -30,6 +32,12 @@ class TranzWarePaymentGatewayHTTPClient implements TranzWarePaymentGatewayHTTPCl
         $this->sslCertificate = $sslCertificate;
     }
 
+    final public function setDebugToFile($path_to_file)
+    {
+        $this->debug = true;
+        $this->debugToFile = $path_to_file;
+    }
+
     /**
      * Executes request and returns instance of result object
      *
@@ -40,7 +48,10 @@ class TranzWarePaymentGatewayHTTPClient implements TranzWarePaymentGatewayHTTPCl
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this->url);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-        curl_setopt($ch, CURLOPT_VERBOSE, false);
+        curl_setopt($ch, CURLOPT_VERBOSE, $this->debug);
+        if ($this->debug) {
+            curl_setopt($ch, CURLOPT_STDERR, fopen($this->debugToFile, 'w+'));
+        }
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($ch, CURLOPT_POST, true);

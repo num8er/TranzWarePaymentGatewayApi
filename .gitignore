@@ -1,3 +1,6 @@
+.DS_Store
 .idea
 vendor
+samples/vendor
+samples/composer.lock
 composer.lock

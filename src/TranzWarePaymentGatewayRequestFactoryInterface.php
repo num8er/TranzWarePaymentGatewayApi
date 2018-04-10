@@ -22,6 +22,14 @@ interface TranzWarePaymentGatewayRequestFactoryInterface
     public function __construct($GATEWAY_URL, $MERCHANT_ID, $ON_ORDER_APPROVED_URL, $ON_ORDER_DECLINED_URL, $ON_ORDER_CANCELED_URL, $LANG = 'EN');
 
     /**
+     * Sets verbose mode in requests and file to output
+     *
+     * @param string$path_to_file
+     * @return void
+     */
+    public function setDebugFile($path_to_file);
+
+    /**
      * @param float  $amount
      * @param string $currency
      * @param string $description
