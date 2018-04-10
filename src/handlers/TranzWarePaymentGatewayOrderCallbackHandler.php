@@ -5,10 +5,6 @@ namespace num8er\TranzWarePaymentGateway\Handlers;
 /**
  * Class that handles request from TWPG after approved/canceled/declined order creation on TWPG site
  *
- * Example:
- *  $data = TranzWarePaymentGatewayHandlerInterface::handle();
- *  var_dump($data); // --> array that consist of DatTime, OrderId, Amount, Currency, OrderStatus values
- *
  * Class TranzWarePaymentGatewayOrderCallbackHandler
  * @package num8er\TranzWarePaymentGateway\Handlers
  */
