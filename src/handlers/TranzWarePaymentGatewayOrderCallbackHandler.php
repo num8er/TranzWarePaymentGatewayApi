@@ -32,7 +32,8 @@ class TranzWarePaymentGatewayOrderCallbackHandler implements TranzWarePaymentGat
             'OrderId'       => $data->OrderID,
             'Amount'        => $data->PurchaseAmount,
             'Currency'      => $data->Currency,
-            'OrderStatus'   => $data->OrderStatus
+            'OrderStatus'   => $data->OrderStatus,
+            'xmlmsg'        => $_REQUEST['xmlmsg']
         ];
     }
 }
