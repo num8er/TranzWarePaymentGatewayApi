@@ -36,14 +36,17 @@ class TranzWarePaymentGatewayOrderRequestResult implements TranzWarePaymentGatew
         $response = $this->data->Response;
         $order = $response->Order;
         $this->status = $response->Status;
-        $this->data = [
-            'URL'        => $order->URL,
-            'OrderId'    => $order->OrderID,
-            'SessionId'  => $order->SessionID,
-            'PaymentUrl' => $order->URL . '?' .
-                           'ORDERID='.$order->OrderID . '&' .
-                           'SESSIONID='.$order->SessionID
-        ];
+
+        $this->data = null;
+        if ($this->success()) {
+            $this->data = [
+                'URL' => $order->URL,
+                'OrderId' => $order->OrderID,
+                'SessionId' => $order->SessionID,
+                'PaymentUrl' => $order->URL . '?' . 'ORDERID=' . $order->OrderID . '&' . 'SESSIONID=' .
+                                $order->SessionID
+            ];
+        }
     }
 
     public function getHttpStatus()
