@@ -15,6 +15,7 @@ class TranzWarePaymentGatewayOrderRequest implements TranzWarePaymentGatewayRequ
      * TranzWarePaymentGatewayOrderRequest constructor.
      *
      * @param string $requestUrl
+     * @param string $orderType
      * @param string $approvalUrl
      * @param string $declineUrl
      * @param string $cancelUrl
@@ -23,11 +24,12 @@ class TranzWarePaymentGatewayOrderRequest implements TranzWarePaymentGatewayRequ
      * @param string $currency
      * @param string $description
      * @param string $lang
+     * @param string $debugToFile
      */
-    public function __construct($requestUrl, $approvalUrl, $declineUrl, $cancelUrl, $merchantId, $amount, $currency, $description = '', $lang = 'EN', $debugToFile = null)
+    public function __construct($requestUrl, $approvalUrl, $declineUrl, $cancelUrl, $orderType, $merchantId, $amount, $currency, $description = '', $lang = 'EN', $debugToFile = null)
     {
         $this->requestAttributes =
-            compact('requestUrl', 'approvalUrl', 'declineUrl', 'cancelUrl', 'merchantId', 'amount', 'currency', 'description', 'lang');
+            compact('requestUrl', 'approvalUrl', 'declineUrl', 'cancelUrl', 'orderType', 'merchantId', 'amount', 'currency', 'description', 'lang');
         $this->debugToFile = $debugToFile;
     }
 

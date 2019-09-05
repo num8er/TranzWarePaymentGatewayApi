@@ -108,16 +108,17 @@ class TranzWarePaymentGatewayRequestFactory implements TranzWarePaymentGatewayRe
      * @param float  $amount
      * @param string $currency
      * @param string $description
-     *
+     * @param string $orderType
      * @return TranzWarePaymentGatewayOrderRequest
      */
-    final public function createOrderRequest($amount, $currency, $description = '')
+    final public function createOrderRequest($amount, $currency, $description = '', $orderType = '')
     {
         $request = new TranzWarePaymentGatewayOrderRequest(
             $this->getUrlProvider()->getGatewayUrl(),
             $this->getUrlProvider()->getOnOrderApprovedUrl(),
             $this->getUrlProvider()->getOnOrderDeclinedUrl(),
             $this->getUrlProvider()->getOnOrderCanceledUrl(),
+            $orderType,
             $this->MERCHANT_ID,
             $amount,
             $currency,
