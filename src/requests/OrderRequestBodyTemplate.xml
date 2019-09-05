@@ -4,6 +4,7 @@
         <Operation>CreateOrder</Operation>
         <Language>{{lang}}</Language>
         <Order>
+            <OrderType>{{orderType}}</OrderType>
             <Merchant>{{merchantId}}</Merchant>
             <Amount>{{amount}}</Amount>
             <Currency>{{currency}}</Currency>
