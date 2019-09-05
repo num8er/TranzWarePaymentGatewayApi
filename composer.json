@@ -1,6 +1,6 @@
 {
   "name": "num8er/tranzware-payment-gateway",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "Library for working with TranzWare Payment Gateway",
   "type": "library",
   "license": "MIT",
@@ -12,12 +12,20 @@
       "role": "Developer"
     }
   ],
-  "require": {},
+  "require": {
+    "ext-curl": "*",
+    "ext-json": "*",
+    "ext-simplexml": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8"
+  },
   "autoload": {
     "psr-4": {
       "num8er\\TranzWarePaymentGateway\\": "src/",
       "num8er\\TranzWarePaymentGateway\\Requests\\": "src/requests/",
-      "num8er\\TranzWarePaymentGateway\\Handlers\\": "src/handlers/"
+      "num8er\\TranzWarePaymentGateway\\Handlers\\": "src/handlers/",
+      "tests\\": "tests/"
     }
   }
 }

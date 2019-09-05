@@ -1,7 +1,8 @@
 <?php
 
 namespace num8er\TranzWarePaymentGateway;
-use num8er\TranzWarePaymentGateway\Handlers\TranzWarePaymentGatewayHandlerInterface;
+
+use \num8er\TranzWarePaymentGateway\Handlers\TranzWarePaymentGatewayHandlerInterface;
 
 /**
  * Interface TranzWarePaymentGatewayHandlerFactoryInterface

@@ -1,7 +1,8 @@
 <?php
 
 namespace num8er\TranzWarePaymentGateway;
-use num8er\TranzWarePaymentGateway\Requests\TranzWarePaymentGatewayRequestInterface;
+
+use \num8er\TranzWarePaymentGateway\Requests\TranzWarePaymentGatewayRequestInterface;
 
 /**
  * Interface TranzWarePaymentGatewayRequestFactoryInterface
@@ -19,7 +20,11 @@ interface TranzWarePaymentGatewayRequestFactoryInterface
      * @param string $ON_ORDER_CANCELED_URL
      * @param string $LANG
      */
-    public function __construct($GATEWAY_URL, $MERCHANT_ID, $ON_ORDER_APPROVED_URL, $ON_ORDER_DECLINED_URL, $ON_ORDER_CANCELED_URL, $LANG = 'EN');
+    public function __construct(
+        $GATEWAY_URL, $MERCHANT_ID,
+        $ON_ORDER_APPROVED_URL, $ON_ORDER_DECLINED_URL, $ON_ORDER_CANCELED_URL,
+        $LANG = 'EN'
+    );
 
     /**
      * Sets verbose mode in requests and file to output
@@ -33,10 +38,11 @@ interface TranzWarePaymentGatewayRequestFactoryInterface
      * @param float  $amount
      * @param string $currency
      * @param string $description
+     * @param string{OrderTypes::PURCHASE, OrderTypes::PRE_AUTH} $orderType
      *
      * @return TranzWarePaymentGatewayRequestInterface
      */
-    public function createOrderRequest($amount, $currency, $description = '');
+    public function createOrderRequest($amount, $currency, $description = '', $orderType = OrderTypes::PURCHASE);
 
     /**
      * @param string $orderId

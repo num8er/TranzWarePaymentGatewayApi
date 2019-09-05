@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TKKPG>
+    <Request>
+        <Operation>CreateOrder</Operation>
+        <Language>{{lang}}</Language>
+        <Order>
+            <OrderType>PreAuth</OrderType>
+            <Merchant>{{merchantId}}</Merchant>
+            <Amount>{{amount}}</Amount>
+            <Currency>{{currency}}</Currency>
+            <Description>{{description}}</Description>
+            <ApproveURL>{{approvalUrl}}</ApproveURL>
+            <CancelURL>{{cancelUrl}}</CancelURL>
+            <DeclineURL>{{declineUrl}}</DeclineURL>
+        </Order>
+    </Request>
+</TKKPG>

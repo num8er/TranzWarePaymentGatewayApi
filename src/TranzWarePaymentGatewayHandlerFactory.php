@@ -2,7 +2,7 @@
 
 namespace num8er\TranzWarePaymentGateway;
 
-use num8er\TranzWarePaymentGateway\Handlers\TranzWarePaymentGatewayOrderCallbackHandler;
+use \num8er\TranzWarePaymentGateway\Handlers\TranzWarePaymentGatewayOrderCallbackHandler;
 
 /**
  * Class TranzWarePaymentGatewayHandlerFactory

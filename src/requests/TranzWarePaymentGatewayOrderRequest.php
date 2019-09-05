@@ -2,6 +2,8 @@
 
 namespace num8er\TranzWarePaymentGateway\Requests;
 
+use \num8er\TranzWarePaymentGateway\OrderTypes;
+
 /**
  * Class TranzWarePaymentGatewayOrderRequest
  * @package num8er\TranzWarePaymentGateway\Requests
@@ -15,10 +17,10 @@ class TranzWarePaymentGatewayOrderRequest implements TranzWarePaymentGatewayRequ
      * TranzWarePaymentGatewayOrderRequest constructor.
      *
      * @param string $requestUrl
-     * @param string $orderType
      * @param string $approvalUrl
      * @param string $declineUrl
      * @param string $cancelUrl
+     * @param string{OrderTypes::PURCHASE, OrderTypes::PRE_AUTH} $orderType
      * @param string $merchantId
      * @param float  $amount
      * @param string $currency
@@ -26,7 +28,11 @@ class TranzWarePaymentGatewayOrderRequest implements TranzWarePaymentGatewayRequ
      * @param string $lang
      * @param string $debugToFile
      */
-    public function __construct($requestUrl, $approvalUrl, $declineUrl, $cancelUrl, $orderType, $merchantId, $amount, $currency, $description = '', $lang = 'EN', $debugToFile = null)
+    public function __construct(
+        $requestUrl, $approvalUrl, $declineUrl, $cancelUrl,
+        $orderType, $merchantId, $amount, $currency,
+        $description = '', $lang = 'EN', $debugToFile = null
+    )
     {
         $this->requestAttributes =
             compact('requestUrl', 'approvalUrl', 'declineUrl', 'cancelUrl', 'orderType', 'merchantId', 'amount', 'currency', 'description', 'lang');
@@ -50,7 +56,9 @@ class TranzWarePaymentGatewayOrderRequest implements TranzWarePaymentGatewayRequ
 
     final private function getRequestBody()
     {
-        $body = file_get_contents(__DIR__ . '/OrderRequestBodyTemplate.xml');
+        $orderType = OrderTypes::fromString($this->requestAttributes['orderType']);
+        $templateFile = __DIR__ . '/templates/'.$orderType.'OrderRequestBodyTemplate.xml';
+        $body = file_get_contents($templateFile);
         foreach ($this->requestAttributes AS $key => $value) {
             $body = str_replace('{{' . $key . '}}', $value, $body);
         }

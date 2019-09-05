@@ -44,7 +44,8 @@ class TranzWarePaymentGatewayOrderStatusRequest implements TranzWarePaymentGatew
 
     final private function getRequestBody()
     {
-        $body = file_get_contents(__DIR__ . '/OrderStatusRequestBodyTemplate.xml');
+        $templateFile = __DIR__ . '/templates/OrderStatusRequestBodyTemplate.xml';
+        $body = file_get_contents($templateFile);
         foreach ($this->requestAttributes AS $key => $value) {
             $body = str_replace('{{' . $key . '}}', $value, $body);
         }

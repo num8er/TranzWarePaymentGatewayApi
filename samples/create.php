@@ -5,8 +5,9 @@ error_reporting(E_ALL);
 
 require_once('vendor/autoload.php');
 
-use num8er\TranzWarePaymentGateway\TranzWarePaymentGatewayRequestFactory;
-use num8er\TranzWarePaymentGateway\CurrencyCodes;
+use \num8er\TranzWarePaymentGateway\TranzWarePaymentGatewayRequestFactory;
+use \num8er\TranzWarePaymentGateway\CurrencyCodes;
+use \num8er\TranzWarePaymentGateway\OrderTypes;
 
 $requestFactory = new TranzWarePaymentGatewayRequestFactory(
     'https://tranz-ware-payment-gateway/url',
@@ -22,7 +23,11 @@ $certFile = __DIR__.'/certificates/cert-signed-by-payment-gateway-part.crt';
 $requestFactory->setCertificate($certFile, $keyFile, $keyPass);
 $requestFactory->setDebugFile(__DIR__.'/debug.log');
 
-$orderRequest = $requestFactory->createOrderRequest(1, CurrencyCodes::USD, 'TEST PAYMENT $0.01');
+$orderRequest = $requestFactory->createOrderRequest(1, CurrencyCodes::USD, 'TEST PAYMENT $0.01', OrderTypes::PURCHASE);
+/**
+ * or shorthand:
+ * $orderRequest = $requestFactory->createPurchaseOrderRequest(1, CurrencyCodes::USD, 'TEST PAYMENT $0.01');
+ */
 $orderRequestResult = $orderRequest->execute();
 if ($orderRequestResult->success()) {
     $orderData = $orderRequestResult->getData();

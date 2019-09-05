@@ -2,7 +2,7 @@
 
 require_once('vendor/autoload.php');
 
-use num8er\TranzWarePaymentGateway\TranzWarePaymentGatewayRequestFactory;
+use \num8er\TranzWarePaymentGateway\TranzWarePaymentGatewayRequestFactory;
 
 $requestFactory = new TranzWarePaymentGatewayRequestFactory(
     'https://tranz-ware-payment-gateway/url',
@@ -24,4 +24,3 @@ $orderStatusRequestResult = $orderStatusRequest->execute();
 $orderStatusData = $orderStatusRequestResult->getData();
 
 var_dump($orderStatusData);
-

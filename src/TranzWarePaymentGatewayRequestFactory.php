@@ -2,8 +2,8 @@
 
 namespace num8er\TranzWarePaymentGateway;
 
-use num8er\TranzWarePaymentGateway\Requests\TranzWarePaymentGatewayOrderRequest;
-use num8er\TranzWarePaymentGateway\Requests\TranzWarePaymentGatewayOrderStatusRequest;
+use \num8er\TranzWarePaymentGateway\Requests\TranzWarePaymentGatewayOrderRequest;
+use \num8er\TranzWarePaymentGateway\Requests\TranzWarePaymentGatewayOrderStatusRequest;
 
 /**
  * Factory class for creation of request objects
@@ -39,7 +39,11 @@ class TranzWarePaymentGatewayRequestFactory implements TranzWarePaymentGatewayRe
      * @param string $ON_ORDER_CANCELED_URL
      * @param string $LANG
      */
-    public function __construct($GATEWAY_URL, $MERCHANT_ID, $ON_ORDER_APPROVED_URL, $ON_ORDER_DECLINED_URL, $ON_ORDER_CANCELED_URL, $LANG = 'EN')
+    public function __construct(
+        $GATEWAY_URL, $MERCHANT_ID,
+        $ON_ORDER_APPROVED_URL, $ON_ORDER_DECLINED_URL, $ON_ORDER_CANCELED_URL,
+        $LANG = 'EN'
+    )
     {
         $this->MERCHANT_ID = $MERCHANT_ID;
         $this->LANG = $LANG;
@@ -94,13 +98,14 @@ class TranzWarePaymentGatewayRequestFactory implements TranzWarePaymentGatewayRe
     }
 
     protected $debug = false, $debugFile;
+
     /**
-     * @param string $path_to_file
+     * @param string $pathToFile
      */
-    final public function setDebugFile($path_to_file)
+    final public function setDebugFile($pathToFile)
     {
         $this->debug = true;
-        $this->debugFile = $path_to_file;
+        $this->debugFile = $pathToFile;
     }
 
 
@@ -108,17 +113,18 @@ class TranzWarePaymentGatewayRequestFactory implements TranzWarePaymentGatewayRe
      * @param float  $amount
      * @param string $currency
      * @param string $description
-     * @param string $orderType
+     * @param string{OrderTypes::PURCHASE, OrderTypes::PRE_AUTH} $orderType
+     *
      * @return TranzWarePaymentGatewayOrderRequest
      */
-    final public function createOrderRequest($amount, $currency, $description = '', $orderType = '')
+    final public function createOrderRequest($amount, $currency, $description = '', $orderType = OrderTypes::PURCHASE)
     {
         $request = new TranzWarePaymentGatewayOrderRequest(
             $this->getUrlProvider()->getGatewayUrl(),
             $this->getUrlProvider()->getOnOrderApprovedUrl(),
             $this->getUrlProvider()->getOnOrderDeclinedUrl(),
             $this->getUrlProvider()->getOnOrderCanceledUrl(),
-            $orderType,
+            OrderTypes::fromString($orderType),
             $this->MERCHANT_ID,
             $amount,
             $currency,
@@ -128,6 +134,30 @@ class TranzWarePaymentGatewayRequestFactory implements TranzWarePaymentGatewayRe
         );
         $request->setSslCertificate($this->sslCertificate, $this->sslKey, $this->sslKeyPass);
         return $request;
+    }
+
+    /**
+     * @param float  $amount
+     * @param string $currency
+     * @param string $description
+     *
+     * @return TranzWarePaymentGatewayOrderRequest
+     */
+    final public function createOrderPreAuthRequest($amount, $currency, $description = '')
+    {
+        return $this->createOrderRequest($amount, $currency, $description, OrderTypes::PRE_AUTH);
+    }
+
+    /**
+     * @param float  $amount
+     * @param string $currency
+     * @param string $description
+     *
+     * @return TranzWarePaymentGatewayOrderRequest
+     */
+    final public function createOrderPurchaseRequest($amount, $currency, $description = '')
+    {
+        return $this->createOrderRequest($amount, $currency, $description, OrderTypes::PURCHASE);
     }
 
     /**

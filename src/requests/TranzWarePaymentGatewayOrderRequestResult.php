@@ -13,6 +13,11 @@ class TranzWarePaymentGatewayOrderRequestResult implements TranzWarePaymentGatew
     private $status;
     private $data;
 
+    /**
+     * TranzWarePaymentGatewayOrderRequestResult constructor.
+     *
+     * @param TranzWarePaymentGatewayHTTPClientResultInterface $HTTPClientResult
+     */
     public function __construct(TranzWarePaymentGatewayHTTPClientResultInterface $HTTPClientResult)
     {
         $this->responseBody = $HTTPClientResult->getOutput();
