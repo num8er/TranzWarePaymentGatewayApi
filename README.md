@@ -23,11 +23,4 @@ See [samples](samples) folder
 
 ---
 
-**References**
-
-https://compassplus.com/solutions/plug-play/processing-hub
-
-https://compassplus.com/application/files/2115/4807/1087/TranzWare_e-Commerce.pdf
-
-**Integration manual (in Russian language)**
-https://compassplus.ru/static/materials/other/leaflets/Integration_Instruction_TWEC_PG.pdf
+[Integration manual (in Russian language)](docs/Integration_Instruction_TWEC_PG.pdf)
