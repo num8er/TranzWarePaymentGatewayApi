@@ -2,6 +2,8 @@
 
 namespace num8er\TranzWarePaymentGateway;
 
+use Jawira\CaseConverter\Convert;
+
 class OrderTypes
 {
     const PURCHASE = 'Purchase';
@@ -9,24 +11,9 @@ class OrderTypes
 
     public static function sanitizeValue($value)
     {
-        $value = preg_replace("/[^A-Za-z_]/", '', $value);
-        $value = trim($value, '_');
-        if (!$value) return '';
+        if( ! preg_match('/^[A-Za-z_]+?/', $value)) return '';
 
-        $isSnakeCase = strpos($value, '_') > 0;
-        if ($isSnakeCase) {
-            return
-                implode('',
-                    array_map('ucwords',
-                        array_map('strtolower',
-                            explode('_', $value)
-                        )
-                    )
-                );
-        }
-
-        $words = implode('_', preg_split('/(?=[A-Z])/', $value));
-        return self::sanitizeValue($words);
+        return (new Convert($value))->toPascal();
     }
 
     public static function isValid($orderType)
